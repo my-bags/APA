@@ -1,249 +1,407 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل إعداد رسائل الماجستير والدكتوراة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>الدليل الجامعي لمهارات التوثيق العلمي</title>
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e67e22;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
-        .step-card {
-            transition: transform 0.3s ease;
-            border-right: 5px solid #2c3e50;
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
         }
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2rem;
         }
-        .practical-badge {
-            background-color: #e74c3c;
+
+        header p {
+            margin: 0.5rem 0 0;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro-box {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-right: 5px solid var(--accent-color);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* Tabs Styling */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-btn {
+            background: #eee;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            color: var(--primary-color);
+        }
+
+        .tab-btn:hover {
+            background: #ddd;
+        }
+
+        .tab-btn.active {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px dashed #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+            position: relative;
+        }
+
+        .example-box::before {
+            content: "مثال تطبيقي";
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--secondary-color);
             color: white;
+            padding: 2px 10px;
+            font-size: 0.8rem;
+            border-radius: 3px;
+            font-family: sans-serif;
+        }
+
+        .step-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            margin-bottom: 15px;
+            padding-right: 35px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: "✔";
+            position: absolute;
+            right: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .info-tag {
+            display: inline-block;
+            background: #e8f4fd;
+            color: #2980b9;
             padding: 2px 8px;
             border-radius: 4px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            margin-left: 5px;
         }
-        .theoretical-badge {
-            background-color: #3498db;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: right;
+        }
+
+        table th {
+            background-color: var(--primary-color);
             color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
         }
-        nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
+
+        .note {
+            background-color: #fff3cd;
+            border-right: 5px solid #ffecb5;
+            padding: 10px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-btn {
+                border-radius: 8px;
+                text-align: right;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header class="bg-slate-800 text-white py-12 px-6 text-center shadow-lg">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">الدليل الشامل لإعداد رسائل الماجستير والدكتوراة</h1>
-        <p class="text-xl md:text-2xl font-light opacity-90">إعداد أ. ياسر مدير مكتبة كلية الخدمة الاجتماعية جامعة الفيوم</p>
-    </header>
+<header>
+    <h1>بوابة الباحث العلمي للتوثيق والتحقيق</h1>
+    <p>دليلك الشامل لإتقان مهارات التوثيق بنظام APA والمزيد .....
+إعداد أ. ياسر مدير مكتبة كلية الخدمة الاجتماعية جامعة الفيوم</p>
+</header>
 
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md py-4 px-6 mb-8 overflow-x-auto">
-        <div class="container mx-auto flex justify-center space-x-reverse space-x-4 whitespace-nowrap">
-            <a href="#step1" class="text-slate-700 hover:text-blue-600 font-bold">1. اختيار الموضوع</a>
-            <a href="#step2" class="text-slate-700 hover:text-blue-600 font-bold">2. الدراسات السابقة</a>
-            <a href="#step3" class="text-slate-700 hover:text-blue-600 font-bold">3. السيمينار</a>
-            <a href="#step4" class="text-slate-700 hover:text-blue-600 font-bold">4. جمع البيانات</a>
-            <a href="#step5" class="text-slate-700 hover:text-blue-600 font-bold">5. التحليل والكتابة</a>
+<div class="container">
+    <div class="intro-box">
+        <h3>مرحباً بك يا باحث المستقبل</h3>
+        <p>التوثيق هو "هوية" بحثك. في هذا الملف التفاعلي، ستتعرف على كيفية إسناد الفضل لأهله، وحماية نفسك من تهمة الانتحال العلمي، وبناء قائمة مراجع رصينة تليق بباحث في كلية الخدمة الاجتماعية.</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'systems')">أنظمة التوثيق</button>
+        <button class="tab-btn" onclick="openTab(event, 'apa-rules')">قواعد APA</button>
+        <button class="tab-btn" onclick="openTab(event, 'examples')">أمثلة تطبيقية (خدمة اجتماعية)</button>
+        <button class="tab-btn" onclick="openTab(event, 'steps')">خطوات التوثيق</button>
+        <button class="tab-btn" onclick="openTab(event, 'others')">أشكال أخرى (إحصاءات/مواقع)</button>
+    </div>
+
+    <!-- Tab 1: Overview of Systems -->
+    <div id="systems" class="tab-content active">
+        <h2>نظرة عامة على أنظمة التوثيق العالمية</h2>
+        <p>تتعدد الأنظمة حسب التخصص العلمي، وأبرزها:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>النظام</th>
+                    <th>الاختصار</th>
+                    <th>التخصصات الأكثر استخداماً</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>جمعية علم النفس الأمريكية</td>
+                    <td>APA</td>
+                    <td>العلوم الاجتماعية، الخدمة الاجتماعية، التربية، علم النفس.</td>
+                </tr>
+                <tr>
+                    <td>جمعية اللغات الحديثة</td>
+                    <td>MLA</td>
+                    <td>الآداب، اللغات، العلوم الإنسانية.</td>
+                </tr>
+                <tr>
+                    <td>نظام شيكاغو</td>
+                    <td>Chicago</td>
+                    <td>التاريخ، العلوم السياسية، بعض مجالات الأعمال.</td>
+                </tr>
+                <tr>
+                    <td>نظام فانكوفر</td>
+                    <td>Vancouver</td>
+                    <td>الطب والعلوم الطبيعية (يعتمد الأرقام).</td>
+                </tr>
+                <tr>
+                    <td>نظام هارفارد</td>
+                    <td>Harvard</td>
+                    <td>نظام عام يستخدم في تخصصات متنوعة (مؤلف-تاريخ).</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tab 2: APA Rules -->
+    <div id="apa-rules" class="tab-content">
+        <h2>نظام APA (الإصدار السابع)</h2>
+        <p>يركز هذا النظام على تاريخ النشر لأهميته في تتبع تطور النظريات الاجتماعية. القواعد الأساسية تشمل:</p>
+        
+        <h3>1. التوثيق داخل المتن (Citations)</h3>
+        <ul class="step-list">
+            <li><strong>فكرة عامة:</strong> نذكر (لقب المؤلف، سنة النشر).</li>
+            <li><strong>إذا كان المؤلف واحداً:</strong> (منصور، 2023).</li>
+            <li><strong>إذا كان مؤلفان:</strong> (منصور وحسن، 2022).</li>
+            <li><strong>ثلاثة مؤلفين فأكثر:</strong> (منصور وآخرون، 2021).</li>
+            <li><strong>الاقتباس المباشر:</strong> يجب إضافة رقم الصفحة: (منصور، 2023، ص. 45).</li>
+        </ul>
+
+        <h3>2. قائمة المراجع (References List)</h3>
+        <p>توضع في نهاية البحث، ترتب هجائياً، وتستخدم "المسافة البادئة المعلقة" (Hanging Indent).</p>
+        <div class="note">ملاحظة: في APA، نكتب اللقب أولاً، ثم الحرف الأول من الاسم الأول، ثم سنة النشر بين قوسين.</div>
+    </div>
+
+    <!-- Tab 3: Detailed Examples (Social Work Focus) -->
+    <div id="examples" class="tab-content">
+        <h2>أمثلة تطبيقية لطلاب الخدمة الاجتماعية</h2>
+        
+        <h3>أولاً: الكتب (Books)</h3>
+        <div class="example-box">
+            عثمان، ع. (2020). <em>نظريات الخدمة الاجتماعية المعاصرة</em> (ط. 2). دار المعرفة الجامعية.
         </div>
-    </nav>
 
-    <main class="container mx-auto px-4 pb-12">
-
-        <!-- Introduction -->
-        <section class="mb-12 bg-white p-8 rounded-lg shadow-sm border-l-4 border-blue-500">
-            <h2 class="text-2xl font-bold mb-4 text-blue-800">مقدمة</h2>
-            <p class="leading-relaxed">
-                إن إعداد الرسالة العلمية (ماجستير أو دكتوراة) هو رحلة أكاديمية تتطلب الصبر، الدقة، والمنهجية. يختلف المسار قليلاً بين الكليات **العملية** (التي تعتمد على المعامل والتجارب) والكليات **النظرية** (التي تعتمد على المسح الميداني أو التحليل الفلسفي والاجتماعي)، ولكن القواعد الأكاديمية تظل واحدة.
-            </p>
-        </section>
-
-        <!-- Step 1 -->
-        <section id="step1" class="mb-10">
-            <div class="step-card bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center mb-4">
-                    <span class="bg-slate-800 text-white w-10 h-10 flex items-center justify-center rounded-full ml-4 font-bold">1</span>
-                    <h2 class="text-2xl font-bold text-slate-800">اختيار عنوان وموضوع البحث</h2>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="font-bold text-blue-700 mb-2 underline">الشرح بالتفصيل:</h3>
-                        <p class="mb-4">يجب أن يكون الموضوع حديثاً، يعالج فجوة بحثية، وقابلاً للتطبيق. العنوان لابد أن يكون شاملاً للمتغيرات (المستقل والتابع).</p>
-                        <div class="bg-gray-50 p-4 rounded italic border-r-2 border-gray-300">
-                            <strong>مثال (نظري):</strong> "أثر التحول الرقمي على أداء الأخصائيين الاجتماعيين في المؤسسات التعليمية."<br>
-                            <strong>مثال (عملي):</strong> "تخليق جزيئات نانوية من الفضة واستخدامها في معالجة مياه الصرف الصناعي."
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-green-700 mb-2 underline">روابط مفيدة:</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><a href="https://scholar.google.com" target="_blank" class="text-blue-500 hover:underline">Google Scholar - الباحث العلمي</a></li>
-                            <li><a href="https://www.ekb.eg" target="_blank" class="text-blue-500 hover:underline">بنك المعرفة المصري (EKB)</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Step 2 -->
-        <section id="step2" class="mb-10">
-            <div class="step-card bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center mb-4">
-                    <span class="bg-slate-800 text-white w-10 h-10 flex items-center justify-center rounded-full ml-4 font-bold">2</span>
-                    <h2 class="text-2xl font-bold text-slate-800">مراجعة الدراسات السابقة (Literature Review)</h2>
-                </div>
-                <p class="mb-4">هذه المرحلة هي العمود الفقري للرسالة، حيث تطلع على ما وصل إليه الآخرون لتبدأ من حيث انتهوا.</p>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-blue-50 p-4 rounded">
-                        <span class="theoretical-badge mb-2 inline-block">للكليات النظرية</span>
-                        <p>التركيز على نقد المظريات، المقارنة بين المدارس الفكرية، وتحليل النتائج الميدانية السابقة.</p>
-                    </div>
-                    <div class="bg-red-50 p-4 rounded">
-                        <span class="practical-badge mb-2 inline-block">للكليات العملية</span>
-                        <p>التركيز على البروتوكولات المخبرية، المواد المستخدمة، والنتائج الرقمية الدقيقة المسجلة في الأبحاث العالمية.</p>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <h3 class="font-bold text-green-700 mb-2 underline">مواقع للبحث عن المراجع:</h3>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="https://www.researchgate.net" target="_blank" class="bg-slate-100 px-4 py-2 rounded hover:bg-slate-200 transition">ResearchGate</a>
-                        <a href="https://www.sciencedirect.com" target="_blank" class="bg-slate-100 px-4 py-2 rounded hover:bg-slate-200 transition">ScienceDirect</a>
-                        <a href="https://shamaa.org" target="_blank" class="bg-slate-100 px-4 py-2 rounded hover:bg-slate-200 transition">قاعدة شمع (للعلوم التربوية)</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Step 3 -->
-        <section id="step3" class="mb-10">
-            <div class="step-card bg-white p-6 rounded-lg shadow-sm border-r-5 border-yellow-500">
-                <div class="flex items-center mb-4">
-                    <span class="bg-slate-800 text-white w-10 h-10 flex items-center justify-center rounded-full ml-4 font-bold">3</span>
-                    <h2 class="text-2xl font-bold text-slate-800">إعداد خطة البحث (Proposal) والسيمينار</h2>
-                </div>
-                <p class="mb-4">تتضمن الخطة: المقدمة، المشكلة، الأهداف، الأهمية، التساؤلات أو الفروض، والمنهجية.</p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-right border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100">
-                                <th class="p-3 border">العنصر</th>
-                                <th class="p-3 border text-blue-700">الكليات النظرية</th>
-                                <th class="p-3 border text-red-700">الكليات العملية</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-3 border font-bold">المنهجية</td>
-                                <td class="p-3 border">وصفي، تحليلي، تاريخي</td>
-                                <td class="p-3 border">تجريبي، شبه تجريبي</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border font-bold">الأدوات</td>
-                                <td class="p-3 border">استمارة استبيان، مقابلة، ملاحظة</td>
-                                <td class="p-3 border">أجهزة معملية، مواد كيميائية، اختبارات قياس</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Step 4 -->
-        <section id="step4" class="mb-10">
-            <div class="step-card bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center mb-4">
-                    <span class="bg-slate-800 text-white w-10 h-10 flex items-center justify-center rounded-full ml-4 font-bold">4</span>
-                    <h2 class="text-2xl font-bold text-slate-800">مرحلة جمع البيانات والتطبيق</h2>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="border p-4 rounded border-dashed border-slate-300">
-                        <h3 class="font-bold mb-2">في الكليات النظرية:</h3>
-                        <p>يتم اختيار "العينة" وتوزيع الاستبيانات. مثال: توزيع 200 استمارة على طلاب الجامعة لقياس مستوى الوعي البيئي.</p>
-                    </div>
-                    <div class="border p-4 rounded border-dashed border-slate-300">
-                        <h3 class="font-bold mb-2">في الكليات العملية:</h3>
-                        <p>تتم في المعامل أو المستشفيات. مثال: إجراء تجربة على 50 عينة تربة لفحص نسبة المعادن الثقيلة بعد إضافة سماد معين.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Step 5 -->
-        <section id="step5" class="mb-10">
-            <div class="step-card bg-white p-6 rounded-lg shadow-sm">
-                <div class="flex items-center mb-4">
-                    <span class="bg-slate-800 text-white w-10 h-10 flex items-center justify-center rounded-full ml-4 font-bold">5</span>
-                    <h2 class="text-2xl font-bold text-slate-800">تحليل النتائج، التوثيق، والمناقشة</h2>
-                </div>
-                <div class="space-y-4">
-                    <div class="bg-green-50 p-4 rounded">
-                        <h3 class="font-bold text-green-800 mb-2">أدوات التحليل الإحصائي الموصى بها:</h3>
-                        <p>للكليات النظرية والعملية: برنامج <strong>SPSS</strong> هو الأشهر، وهناك برنامج <strong>R</strong> و <strong>Python</strong> للأبحاث المتقدمة.</p>
-                    </div>
-                    <div class="bg-gray-50 p-4 rounded">
-                        <h3 class="font-bold text-slate-800 mb-2">نظام التوثيق (Citations):</h3>
-                        <p>نظام <strong>APA</strong> (الأمريكي لعلم النفس) هو الأكثر شيوعاً في الكليات النظرية، بينما تستخدم كليات الهندسة والعلوم نظام <strong>IEEE</strong> أو <strong>Vancouver</strong>.</p>
-                    </div>
-                    <div class="mt-4">
-                        <h3 class="font-bold text-green-700 mb-2 underline">أدوات مساعدة في التوثيق:</h3>
-                        <div class="flex flex-wrap gap-4">
-                            <a href="https://www.mendeley.com" target="_blank" class="text-blue-600 font-bold hover:underline">Mendeley</a>
-                            <a href="https://www.zotero.org" target="_blank" class="text-blue-600 font-bold hover:underline">Zotero</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Tips Section -->
-        <section class="mt-12 bg-slate-800 text-white p-8 rounded-xl shadow-2xl">
-            <h2 class="text-3xl font-bold mb-6 text-center text-yellow-400">نصائح ذهبية"</h2>
-            <div class="grid md:grid-cols-3 gap-6 text-center">
-                <div class="p-4 border border-slate-600 rounded">
-                    <div class="text-4xl mb-2">⚖️</div>
-                    <h3 class="font-bold text-xl mb-2">الأمانة العلمية</h3>
-                    <p class="text-sm opacity-80">تجنب الاقتباس الحرفي بدون توثيق (Plagiarism) واستخدم مواقع كشف الانتحال مثل Turnitin.</p>
-                </div>
-                <div class="p-4 border border-slate-600 rounded">
-                    <div class="text-4xl mb-2">📅</div>
-                    <h3 class="font-bold text-xl mb-2">تنظيم الوقت</h3>
-                    <p class="text-sm opacity-80">خصص ساعات يومية ثابتة للكتابة، فالبحث العلمي يحتاج إلى استمرارية لا انقطاع.</p>
-                </div>
-                <div class="p-4 border border-slate-600 rounded">
-                    <div class="text-4xl mb-2">🗣️</div>
-                    <h3 class="font-bold text-xl mb-2">التواصل مع المشرف</h3>
-                    <p class="text-sm opacity-80">المشرف هو مرشدك؛ اعرض عليه كل خطوة قبل البدء في التالية لتوفير الوقت والجهد.</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-8 px-6 text-center">
-        <p class="mb-2">جميع الحقوق محفوظة &copy; ٢٠٢٥</p>
-        <p class="text-sm opacity-70">تم تصميم هذه الصفحة كدليل استرشادي لطلاب الدراسات العليا</p>
-        <div class="mt-4 flex justify-center space-x-reverse space-x-6">
-            <span>مكتبة كلية الخدمة الاجتماعية - جامعة الفيوم</span>
+        <h3>ثانياً: الدوريات والمجلات العلمية (Journals)</h3>
+        <div class="example-box">
+            أحمد، م.، وإبراهيم، س. (2021). دور الخدمة الاجتماعية في مواجهة التنمر المدرسي. <em>مجلة دراسات في الخدمة الاجتماعية والعلوم الإنسانية</em>، 54(3)، 120-145.
         </div>
-    </footer>
 
-    <!-- Button to Scroll to Top -->
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 left-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition">
-        ↑
-    </button>
+        <h3>ثالثاً: الرسائل العلمية (Theses/Dissertations)</h3>
+        <div class="example-box">
+            السيد، هـ. (2022). <em>الاحتياجات الاجتماعية لأسر ذوي الاحتياجات الخاصة: دراسة مطبقة على مراكز التأهيل بالقاهرة</em> [رسالة ماجستير غير منشورة]. كلية الخدمة الاجتماعية، جامعة حلوان.
+        </div>
+
+        <h3>رابعاً: المؤتمرات العلمية (Conferences)</h3>
+        <div class="example-box">
+            حسين، ف. (2019، أكتوبر 15-16). <em>الذكاء الاصطناعي وتطوير ممارسة الخدمة الاجتماعية</em> [عرض ورقة علمية]. المؤتمر الدولي للخدمة الاجتماعية، الرياض، المملكة العربية السعودية.
+        </div>
+    </div>
+
+    <!-- Tab 4: Steps for Beginners -->
+    <div id="steps" class="tab-content">
+        <h2>خطوات التوثيق بالتفصيل للمبتدئين</h2>
+        <p>اتبع هذه الخطوات الذهبية لضمان دقة توثيقك:</p>
+        <ol class="step-list">
+            <li><strong>جمع البيانات أثناء القراءة:</strong> لا تغلق الكتاب قبل كتابة (المؤلف، العنوان، السنة، الناشر، المدينة، أرقام الصفحات).</li>
+            <li><strong>تحديد نوع المصدر:</strong> هل هو كتاب؟ أم مقال من الإنترنت؟ أم تقرير إحصائي؟ (لكل نوع طريقة).</li>
+            <li><strong>التوثيق الفوري:</strong> وثق داخل المتن فور كتابة الفقرة، لا تؤجل ذلك لنهاية اليوم.</li>
+            <li><strong>التنسيق الهجائي:</strong> ابدأ بتجميع قائمة المراجع في ملف منفصل ورتبها ألفبائياً (أ، ب، ت...).</li>
+            <li><strong>المراجعة النهائية:</strong> تأكد من وجود كل مصدر ذكرته في المتن داخل قائمة المراجع والعكس.</li>
+        </ol>
+    </div>
+
+    <!-- Tab 5: Other Forms -->
+    <div id="others" class="tab-content">
+        <h2>توثيق الأشكال الحديثة وغير التقليدية</h2>
+        
+        <h3>1. المواقع الإلكترونية (Websites)</h3>
+        <div class="example-box">
+            منظمة الصحة العالمية. (2023، 5 يونيو). <em>الصحة النفسية والخدمة الاجتماعية</em>. https://www.who.int/ar/news-room/fact-sheets
+        </div>
+
+        <h3>2. الإحصاءات الرسمية (Statistics)</h3>
+        <p>مهمة جداً لطلاب الخدمة الاجتماعية عند الحديث عن نسب الفقر أو البطالة.</p>
+        <div class="example-box">
+            الجهاز المركزي للتعبئة العامة والإحصاء. (2022). <em>نشرة إحصاءات القوى العاملة السنوية</em>. وزارة التخطيط، مصر.
+        </div>
+
+        <h3>3. المراسلات الشخصية والمقابلات (Personal Communication)</h3>
+        <div class="note">تنبيه: توثق المراسلات الشخصية داخل المتن فقط، ولا تدرج في قائمة المراجع لأن القارئ لا يمكنه الرجوع إليها.</div>
+        <div class="example-box">
+            (أ. د. محمد محمود، مراسلة شخصية، 12 يناير، 2024).
+        </div>
+
+        <h3>4. التقارير الحكومية</h3>
+        <div class="example-box">
+            وزارة التضامن الاجتماعي. (2021). <em>تقرير الإنجازات السنوي لمبادرة حياة كريمة</em>. مطابع الحكومة.
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>تم إعداد هذا الدليل التفاعلي بواسطة أ. ياسر مدير مكتبة كلية الخدمة الاجتماعية جامعة الفيوم &copy; ٢٠٢٥</p>
+</footer>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        
+        // Hide all tab content
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+
+        // Remove "active" class from all buttons
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+
+        // Show current tab and add active class to button
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+        
+        // Smooth scroll to top of content on mobile
+        if (window.innerWidth < 600) {
+            document.querySelector('.tabs').scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+    
